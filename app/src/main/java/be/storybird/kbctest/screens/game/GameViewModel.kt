@@ -16,29 +16,23 @@ class GameViewModel @Inject constructor(
 	private val repo: MastermindRepo
 ) : ViewModel() {
 
-	private companion object{
+	companion object {
 		private val colorGreen = Color.Green
 		private val colorRed = Color.Red
 		private val colorOrange = Color(0xFFFF9800)
-		private val colorDefault = Color(0xFFE0E0E0)
+		val colorDefault = Color(0xFFE0E0E0)
 	}
 
 	private lateinit var code: String
-	val _boxColors = MutableLiveData<List<Color>>()
-	val _btnEnabled = MutableLiveData<Boolean>()
-	val guess: List<Char> = listOf(' ', ' ', ' ', ' ')
-
-	val boxColors: LiveData<List<Color>> get() = _boxColors
-	val btnEnabled: LiveData<Boolean> get() = _btnEnabled
+	val _gameState = MutableLiveData<GameState>()
+	val gameState: LiveData<GameState> get() = _gameState
 
 	fun init() {
 		code = repo.generateMastermindCode()
-		_btnEnabled.value = false
-		_boxColors.value = listOf(colorDefault, colorDefault, colorDefault, colorDefault)
 	}
 
 	fun onLetterUpdated(position: Int, letter: String) {
-
+		//TODO implement this
 	}
 
 	fun onCheckCodeClicked() {

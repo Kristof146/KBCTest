@@ -38,8 +38,7 @@ fun GameScreen(
 	viewModel: GameViewModel = hiltViewModel()
 ) {
 
-	val buttonEnabled = viewModel.btnEnabled.observeAsState()
-	val boxColors = viewModel.boxColors.observeAsState()
+	val gameState = viewModel.gameState.observeAsState()
 
 	LaunchedEffect(Unit) {
 		viewModel.init()
@@ -56,7 +55,7 @@ fun GameScreen(
 			horizontalArrangement = Arrangement.spacedBy(16.dp)
 		) {
 			for (i in 0..3) {
-				val value = viewModel.guess.getOrNull(i)?.toString()?.takeIf { it != " " } ?: ""
+				val value = gameState.value?.guess?.getOrNull(i)?.toString()?.takeIf { it != " " } ?: ""
 				OutlinedTextField(
 					value = value,
 					onValueChange = { newValue ->
@@ -74,7 +73,7 @@ fun GameScreen(
 						.width(56.dp)
 						.height(56.dp)
 						.background(
-							color = boxColors.value?.get(i) ?: Color.Black,
+							color = gameState.value?.boxColors?.get(i) ?: Color.Black,
 							shape = RoundedCornerShape(8.dp)
 						),
 					singleLine = true,
@@ -95,7 +94,7 @@ fun GameScreen(
 		Spacer(modifier = Modifier.height(32.dp))
 		Button(
 			onClick = { viewModel.onCheckCodeClicked() },
-			enabled = buttonEnabled.value ?: false
+			enabled = gameState.value?.btnEnabled ?: false
 		) {
 			Text("Check")
 		}
