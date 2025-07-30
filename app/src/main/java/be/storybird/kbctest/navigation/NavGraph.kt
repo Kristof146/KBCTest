@@ -5,7 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import be.storybird.kbctest.home.HomeScreen
+import be.storybird.kbctest.screens.game.GameScreen
+import be.storybird.kbctest.screens.home.HomeScreen
 
 /**
  * Created by Kristof Van Daele.
@@ -24,14 +25,12 @@ fun NavGraph(
 			HomeScreen(navController = navController)
 		}
 		composable(route = Screen.Game.route) {
-			//TODO
+			GameScreen(navController = navController)
 		}
-		// Add more screens here as needed
 	}
 }
 
 sealed class Screen(val route: String) {
-	object Home : Screen("home")
-	object Game : Screen("game")
-	// Add more screens here as needed
+	data object Home : Screen("home")
+	data object Game : Screen("game")
 }

@@ -1,4 +1,4 @@
-package be.storybird.kbctest.home
+package be.storybird.kbctest.screens.game
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,25 +18,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import be.storybird.kbctest.navigation.Screen
 
 /**
  * Created by Kristof Van Daele.
  */
 
-
 @Composable
-fun HomeScreen(
+fun GameScreen(
 	navController: NavController,
-	viewModel: HomeViewModel = hiltViewModel()
+	viewModel: GameViewModel = hiltViewModel()
 ) {
 
 	LaunchedEffect(Unit) {
-		viewModel.init(object : HomeViewModel.NavDelegate {
-			override fun navigateToGame() {
-				navController.navigate(Screen.Game.route)
-			}
-		})
+		viewModel.init()
 	}
 
 	Column(
@@ -47,23 +41,21 @@ fun HomeScreen(
 		verticalArrangement = Arrangement.Center
 	) {
 
-			Text(
-				text = "Welcome to Mastermind Test App!",
-				style = MaterialTheme.typography.headlineMedium,
-				textAlign = TextAlign.Center
-			)
+		Text(
+			text = "Here comes the actual game",
+			style = MaterialTheme.typography.headlineMedium,
+			textAlign = TextAlign.Center
+		)
 
-			Spacer(modifier = Modifier.height(32.dp))
+		Spacer(modifier = Modifier.height(32.dp))
 
-			Button(
-				onClick = {
-					viewModel.navigateToGame()
-				},
-				modifier = Modifier.width(200.dp)
-			) {
-				Text("Start")
-			}
-
-
+		Button(
+			onClick = {
+				//TODO do something
+			},
+			modifier = Modifier.width(200.dp)
+		) {
+			Text("Check")
+		}
 	}
 }
