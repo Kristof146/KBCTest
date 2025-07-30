@@ -13,6 +13,8 @@ interface MastermindRepo {
 class MastermindRepoImpl @Inject constructor() : MastermindRepo {
 
 	override fun generateMastermindCode(): String {
-		return "ABCD"
+		return (1..4)
+			.map { ('A'..'Z').random() }
+			.joinToString("")
 	}
 }
