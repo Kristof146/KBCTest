@@ -25,7 +25,7 @@ fun NavGraph(
 			HomeScreen(navController = navController)
 		}
 		composable(route = Screen.Game.route) {
-			GameScreen(navController = navController)
+			GameScreen()
 		}
 	}
 }
