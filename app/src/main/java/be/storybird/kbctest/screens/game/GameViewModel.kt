@@ -13,8 +13,10 @@ class GameViewModel @Inject constructor(
 	private val repo: MastermindRepo
 ) : ViewModel() {
 
+	private lateinit var code: String
+
 	fun init() {
-		repo.getMastermindCode()
+		code = repo.generateMastermindCode()
 	}
 
 	fun checkCode() {

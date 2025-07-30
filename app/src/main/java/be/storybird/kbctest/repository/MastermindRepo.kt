@@ -7,12 +7,12 @@ import javax.inject.Inject
  */
 interface MastermindRepo {
 
-	fun getMastermindCode(): String
+	fun generateMastermindCode(): String
 }
 
 class MastermindRepoImpl @Inject constructor() : MastermindRepo {
 
-	override fun getMastermindCode(): String {
+	override fun generateMastermindCode(): String {
 		return "ABCD"
 	}
 }
