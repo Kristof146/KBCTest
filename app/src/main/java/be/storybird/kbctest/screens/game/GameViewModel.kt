@@ -51,19 +51,36 @@ class GameViewModel @Inject constructor(
 
 	fun onCheckCodeClicked() {
 		val currentGuess = _gameState.value.guess.joinToString("")
-		val newBoxColors = mutableListOf<Color>()
-		
+		val newBoxColors = MutableList(4) { colorRed }
+
+		val answerChars = code.toCharArray()
+		val guessChars = currentGuess.map { it.uppercaseChar() }.toCharArray()
+		val answerUsed = BooleanArray(4)
+		val guessUsed = BooleanArray(4)
+
+		//check all greens first
 		for (i in 0..3) {
-			val guessChar = currentGuess[i]
-			val codeChar = code[i]
-			
-			val color = when {
-				guessChar == codeChar -> colorGreen
-				code.contains(guessChar) -> colorOrange
-				else -> colorRed
+			if (guessChars[i] == answerChars[i]) {
+				newBoxColors[i] = colorGreen
+				answerUsed[i] = true
+				guessUsed[i] = true
 			}
-			newBoxColors.add(color)
 		}
+
+		//check orange next
+		for (i in 0..3) {
+			if (!guessUsed[i]) {
+				for (j in 0..3) {
+					if (!answerUsed[j] && guessChars[i] == answerChars[j]) {
+						newBoxColors[i] = colorOrange
+						answerUsed[j] = true
+						break
+					}
+				}
+			}
+		}
+
+		//those unchanged are red
 		
 		_gameState.update { currentState ->
 			currentState.copy(
