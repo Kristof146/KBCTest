@@ -19,9 +19,9 @@ class GameViewModel @Inject constructor(
 ) : ViewModel() {
 
 	companion object {
-		private val colorGreen = Color.Green
-		private val colorRed = Color.Red
-		private val colorOrange = Color(0xFFFF9800)
+		val colorGreen = Color.Green
+		val colorRed = Color.Red
+		val colorOrange = Color(0xFFFF9800)
 		val colorDefault = Color(0xFFE0E0E0)
 	}
 
