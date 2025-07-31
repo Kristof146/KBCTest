@@ -43,18 +43,17 @@ class GameViewModel @Inject constructor(
 			
 			currentState.copy(
 				guess = newGuess,
-				boxColors = List(4) { GameViewModel.colorDefault },
+				boxColors = List(4) { colorDefault },
 				btnEnabled = isButtonEnabled
 			)
 		}
 	}
 
 	fun onCheckCodeClicked() {
-		val currentGuess = _gameState.value.guess.joinToString("")
 		val newBoxColors = MutableList(4) { colorRed }
 
 		val answerChars = code.toCharArray()
-		val guessChars = currentGuess.map { it.uppercaseChar() }.toCharArray()
+		val guessChars = _gameState.value.guess.joinToString("").toCharArray().map { it.uppercaseChar() }.toCharArray()
 		val answerUsed = BooleanArray(4)
 		val guessUsed = BooleanArray(4)
 

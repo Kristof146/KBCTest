@@ -17,7 +17,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 	}
 
 	fun navigateToGame() {
-		//analytics or other shizzle
+		//analytics or other shizzle can be used here before navigating
 		navDelegate.navigateToGame()
 	}
 

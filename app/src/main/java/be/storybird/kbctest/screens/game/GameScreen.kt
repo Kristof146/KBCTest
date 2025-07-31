@@ -94,7 +94,9 @@ fun GameScreen(
 				)
 			}
 		}
+
 		Spacer(modifier = Modifier.height(32.dp))
+
 		Button(
 			onClick = { viewModel.onCheckCodeClicked() },
 			enabled = gameState.btnEnabled
