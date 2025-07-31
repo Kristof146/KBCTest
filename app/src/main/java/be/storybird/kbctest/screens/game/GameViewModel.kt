@@ -43,6 +43,7 @@ class GameViewModel @Inject constructor(
 			
 			currentState.copy(
 				guess = newGuess,
+				boxColors = List(4) { GameViewModel.colorDefault },
 				btnEnabled = isButtonEnabled
 			)
 		}
