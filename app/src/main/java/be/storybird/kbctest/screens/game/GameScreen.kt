@@ -18,7 +18,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,7 +39,7 @@ fun GameScreen(
 	viewModel: GameViewModel = hiltViewModel()
 ) {
 
-	val gameState = viewModel.gameState.observeAsState()
+	val gameState by viewModel.gameState.collectAsState()
 
 	LaunchedEffect(Unit) {
 		viewModel.init()
@@ -55,7 +56,7 @@ fun GameScreen(
 			horizontalArrangement = Arrangement.spacedBy(16.dp)
 		) {
 			for (i in 0..3) {
-				val value = gameState.value?.guess?.getOrNull(i)?.toString()?.takeIf { it != " " } ?: ""
+				val value = gameState.guess.getOrNull(i)?.toString()?.takeIf { it != " " } ?: ""
 				OutlinedTextField(
 					value = value,
 					onValueChange = { newValue ->
@@ -73,7 +74,7 @@ fun GameScreen(
 						.width(56.dp)
 						.height(56.dp)
 						.background(
-							color = gameState.value?.boxColors?.get(i) ?: Color.Black,
+							color = gameState.boxColors.get(i),
 							shape = RoundedCornerShape(8.dp)
 						),
 					singleLine = true,
@@ -94,7 +95,7 @@ fun GameScreen(
 		Spacer(modifier = Modifier.height(32.dp))
 		Button(
 			onClick = { viewModel.onCheckCodeClicked() },
-			enabled = gameState.value?.btnEnabled ?: false
+			enabled = gameState.btnEnabled
 		) {
 			Text("Check")
 		}
