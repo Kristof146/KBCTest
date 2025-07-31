@@ -14,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import be.storybird.kbctest.R
 import be.storybird.kbctest.navigation.Screen
 
 /**
@@ -47,7 +49,7 @@ fun HomeScreen(
 	) {
 
 		Text(
-			text = "Welcome to Mastermind Test App!",
+			text = stringResource(R.string.txt_intro),
 			style = MaterialTheme.typography.headlineMedium,
 			textAlign = TextAlign.Center
 		)
@@ -60,7 +62,7 @@ fun HomeScreen(
 			},
 			modifier = Modifier.width(200.dp)
 		) {
-			Text("Start")
+			Text(stringResource(R.string.btn_start))
 		}
 	}
 }

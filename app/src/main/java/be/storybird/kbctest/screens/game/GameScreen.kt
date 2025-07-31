@@ -23,12 +23,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import be.storybird.kbctest.R
 
 /**
  * Created by Kristof Van Daele.
@@ -97,7 +99,7 @@ fun GameScreen(
 			onClick = { viewModel.onCheckCodeClicked() },
 			enabled = gameState.btnEnabled
 		) {
-			Text("Check")
+			Text(stringResource(R.string.btn_check))
 		}
 	}
 }

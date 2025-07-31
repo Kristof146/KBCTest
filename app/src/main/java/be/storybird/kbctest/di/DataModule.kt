@@ -18,5 +18,5 @@ abstract class DataModule {
 
 	@Binds
 	@Singleton
-	abstract fun bindPhonebookRepository(repo: MastermindRepoImpl): MastermindRepo
+	abstract fun bindMasterMindRepository(repo: MastermindRepoImpl): MastermindRepo
 }
